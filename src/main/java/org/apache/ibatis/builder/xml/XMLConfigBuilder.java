@@ -51,7 +51,6 @@ import org.apache.ibatis.type.JdbcType;
  * @author Kazuki Shimizu
  */
 public class XMLConfigBuilder extends BaseBuilder {
-
   private boolean parsed;
   private final XPathParser parser;
   private String environment;
@@ -359,13 +358,16 @@ public class XMLConfigBuilder extends BaseBuilder {
   private void mapperElement(XNode parent) throws Exception {
     if (parent != null) {
       for (XNode child : parent.getChildren()) {
+        //对package和mapper标签解析 大多数情况系 都是配置package
         if ("package".equals(child.getName())) {
           String mapperPackage = child.getStringAttribute("name");
+          //然后将包下的mapper文件添加到configuration对象中
           configuration.addMappers(mapperPackage);
         } else {
           String resource = child.getStringAttribute("resource");
           String url = child.getStringAttribute("url");
           String mapperClass = child.getStringAttribute("class");
+          //选择不同的文件加载方式
           if (resource != null && url == null && mapperClass == null) {
             ErrorContext.instance().resource(resource);
             InputStream inputStream = Resources.getResourceAsStream(resource);

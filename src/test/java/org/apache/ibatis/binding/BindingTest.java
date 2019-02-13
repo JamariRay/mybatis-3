@@ -61,10 +61,10 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.data.redis.core.RedisTemplate;
 
 public class BindingTest {
   private static SqlSessionFactory sqlSessionFactory;
-
   @BeforeClass
   public static void setup() throws Exception {
     DataSource dataSource = BaseDataTest.createBlogDataSource();

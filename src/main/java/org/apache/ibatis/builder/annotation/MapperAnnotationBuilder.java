@@ -127,6 +127,7 @@ public class MapperAnnotationBuilder {
     String resource = type.toString();
     if (!configuration.isResourceLoaded(resource)) {
       loadXmlResource();
+      //添加到资源解析器中
       configuration.addLoadedResource(resource);
       assistant.setCurrentNamespace(type.getName());
       parseCache();
@@ -178,6 +179,7 @@ public class MapperAnnotationBuilder {
         }
       }
       if (inputStream != null) {
+        //mapper 解析
         XMLMapperBuilder xmlParser = new XMLMapperBuilder(inputStream, assistant.getConfiguration(), xmlResource, configuration.getSqlFragments(), type.getName());
         xmlParser.parse();
       }

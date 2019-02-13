@@ -52,7 +52,7 @@ import org.apache.ibatis.type.TypeHandler;
 /**
  * @author Clinton Begin
  */
-public class MapperBuilderAssistant extends BaseBuilder {
+public class   MapperBuilderAssistant extends BaseBuilder {
 
   private String currentNamespace;
   private final String resource;
@@ -73,7 +73,7 @@ public class MapperBuilderAssistant extends BaseBuilder {
     if (currentNamespace == null) {
       throw new BuilderException("The mapper element requires a namespace attribute to be specified.");
     }
-
+    // 当前的xml解析器唯一 保证a.mapper解析a
     if (this.currentNamespace != null && !this.currentNamespace.equals(currentNamespace)) {
       throw new BuilderException("Wrong namespace. Expected '"
           + this.currentNamespace + "' but found '" + currentNamespace + "'.");
